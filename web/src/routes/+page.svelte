@@ -6,7 +6,7 @@
   export let data: PageData;
 
   onMount(async () => {
-    const r = await fetch("/api/env", {
+    const r = await fetch("/api/env/", {
       method: "GET",
     });
 
