@@ -3,6 +3,7 @@
   import { goto, invalidate } from "$app/navigation";
   import { barVisible } from "$lib/stores";
   import { onDestroy } from "svelte";
+  import { env } from "$env/dynamic/public";
   export let data: PageData;
 
   const models = data.models.filter((el) => el.available);
@@ -22,7 +23,8 @@
 
   let init_prompt = "You are a helpful and honest assistant.";
 
-  let n_threads = 1;
+  let max_threads = env.PUBLIC_CPUS || 64
+  let n_threads = env.PUBLIC_CPUS ? Number(env.PUBLIC_CPUS) / 2 : 2;
   let context_window = 2048;
   let gpu_layers = 0;
 
@@ -199,6 +201,7 @@
             max="100"
             step="1"
             class="range range-sm mt-auto"
+            readonly
           />
         </div>
         <div
@@ -236,7 +239,7 @@
             type="number"
             bind:value={n_threads}
             min="0"
-            max="64"
+            max={max_threads}
           />
         </div>
         <div

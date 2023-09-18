@@ -24,7 +24,7 @@ async def create_new_chat(
     top_p: float = 0.95,
     max_length: int = 2048,
     context_window: int = 2048,
-    gpu_layers: Optional[int] = 0,
+    gpu_layers: int = 0,
     repeat_last_n: int = 64,
     repeat_penalty: float = 1.3,
     init_prompt: str = "",
