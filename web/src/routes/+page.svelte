@@ -7,6 +7,7 @@
   export let data: PageData;
 
   onMount(() => {
+    console.error('** Process **', process.env)
     console.error('** Dynamic **', env)
     console.error('** Raw env **', import.meta.env)
   });
