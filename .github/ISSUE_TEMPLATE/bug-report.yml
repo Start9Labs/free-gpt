@@ -1,6 +1,6 @@
 name: "☢️ Bug Report"
 title: "\U0001F41B [Bug]: "
-description: Create a report to help us improve Serge.
+description: Create a report to help us improve FreeGPT.
 labels: ["☢️ Bug"]
 
 body:

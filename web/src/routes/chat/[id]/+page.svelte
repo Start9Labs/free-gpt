@@ -530,7 +530,7 @@
         name="question"
         class="textarea h-10 flex-1 resize-y bg-[transparent] text-lg placeholder-base-content outline-0 ring-0 focus:outline-0"
         disabled={isLoading}
-        placeholder="Message Serge..."
+        placeholder="Message..."
         bind:value={prompt}
       />
       <button

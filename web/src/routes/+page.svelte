@@ -78,7 +78,7 @@
   </button>
 {/if}
 <div class="flex flex-col items-center justify-center pt-5">
-  <h1 class="pb-2 text-3xl font-bold">Say Hi to Serge</h1>
+  <h1 class="pb-2 text-3xl font-bold">Welcome to FreeGPT</h1>
 </div>
 <h1 class="pb-5 pt-2 text-center text-xl font-light">
   An easy way to chat with Alpaca & other LLaMA based models.
