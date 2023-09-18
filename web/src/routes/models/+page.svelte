@@ -98,9 +98,7 @@
 </div>
 
 <h1 class="pb-5 pt-2 text-center text-xl font-light">
-  Make sure you have enough disk space and available RAM to run them.<br />
-  7B requires about 4.5GB of free RAM, 13B requires about 12GB free, 30B requires
-  about 20GB free
+  Larger models should provide better answers but will be slower.
 </h1>
 
 <div class="mx-auto w-fit">

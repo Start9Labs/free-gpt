@@ -510,11 +510,10 @@
           <div
             class="text-md w-full px-10 pt-2 pb-4 text-center font-light md:px-16"
           >
-            <h4 class="badge badge-ghost text-center text-xs font-semibold">
+            <h4 class="mb-2 badge badge-ghost text-center text-xs font-semibold">
               {startDate.toLocaleString("en-US")}
             </h4>
-            <br />
-            {question.data.content}
+            <p>Model Pre Prompt: {question.data.content || "None"}</p>
           </div>
         {/if}
       {/each}

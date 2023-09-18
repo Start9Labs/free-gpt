@@ -20,8 +20,7 @@
   let repeat_last_n = 64;
   let repeat_penalty = 1.3;
 
-  let init_prompt =
-    "Below is an instruction that describes a task. Write a response that appropriately completes the request.";
+  let init_prompt = "You are a helpful and honest assistant.";
 
   let n_threads = 1;
   let context_window = 2048;
@@ -90,7 +89,7 @@
       <button
         type="submit"
         class="btn-primary btn mb-2 lg:mr-10 lg:mb-0"
-        disabled={!modelAvailable}>Start a new chat</button
+        disabled={!modelAvailable}>Start chat</button
       >
       <button
         on:click={() => goto("/models")}
@@ -200,6 +199,7 @@
             max="100"
             step="1"
             class="range range-sm mt-auto"
+            disabled
           />
         </div>
         <div
@@ -238,6 +238,7 @@
             bind:value={n_threads}
             min="0"
             max="64"
+            disabled
           />
         </div>
         <div
@@ -257,15 +258,18 @@
             step="0.05"
           />
         </div>
-        <div class="col-span-3 flex flex-col">
+        <div
+          class="tooltip col-span-3 flex flex-col"
+          data-tip="Pre prompts are prepended to every prompt you enter into a chat. It is used to help guide or constrain model character and behavior throughout a given chat."
+        >
           <label for="init_prompt" class="label-text pb-1"
-            >Pre-Prompt for initializing a conversation.</label
+            >Pre Prompt</label
           >
           <textarea
             class="textarea-bordered textarea h-24 w-full"
             name="init_prompt"
             bind:value={init_prompt}
-            placeholder="Enter your prompt here"
+            placeholder="Optionally provide a pre prompt for this chat"
           />
         </div>
       </div>

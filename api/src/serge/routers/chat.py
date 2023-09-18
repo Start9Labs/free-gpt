@@ -24,10 +24,10 @@ async def create_new_chat(
     top_p: float = 0.95,
     max_length: int = 2048,
     context_window: int = 2048,
-    gpu_layers: Optional[int] = None,
+    gpu_layers: Optional[int] = 0,
     repeat_last_n: int = 64,
     repeat_penalty: float = 1.3,
-    init_prompt: str = "Below is an instruction that describes a task. Write a response that appropriately completes the request.",
+    init_prompt: str = "",
     n_threads: int = 1,
 ):
     try:
