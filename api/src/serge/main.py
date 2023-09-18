@@ -11,6 +11,7 @@ from serge.models.settings import Settings
 from serge.routers.chat import chat_router
 from serge.routers.model import model_router
 from serge.routers.ping import ping_router
+from serge.routers.env import env_router
 from serge.utils.convert import convert_all
 
 # Configure logging settings
@@ -47,6 +48,7 @@ app = FastAPI(title="Serge", version="0.0.1", description=description, tags_meta
 api_app = FastAPI(title="Serge API")
 api_app.include_router(chat_router)
 api_app.include_router(ping_router)
+api_app.include_router(env_router)
 api_app.include_router(model_router)
 app.mount("/api", api_app)
 

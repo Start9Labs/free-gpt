@@ -1,15 +1,22 @@
 <script lang="ts">
   import type { PageData } from "./$types";
   import { goto, invalidate } from "$app/navigation";
-  import { barVisible } from "$lib/stores";
+  import { barVisible, cpus, modelsUrl } from "$lib/stores";
   import { onDestroy, onMount } from "svelte";
-  import { env } from "$env/dynamic/public";
   export let data: PageData;
 
-  onMount(() => {
-    console.error('** Process **', process.env)
-    console.error('** Dynamic **', env)
-    console.error('** Raw env **', import.meta.env)
+  onMount(async () => {
+    const r = await fetch("/api/env", {
+      method: "GET",
+    });
+
+    if (r.ok) {
+      const data = await r.json();
+      cpus.set(Number(data.cpus));
+      modelsUrl.set(data.modelsUrl);
+    }
+   
+    await invalidate("/api/env/");
   });
 
   const models = data.models.filter((el) => el.available);
@@ -29,8 +36,14 @@
 
   let init_prompt = "You are a helpful and honest assistant.";
 
-  let max_threads = env.PUBLIC_CPUS || 64
-  let n_threads = env.PUBLIC_CPUS ? Number(env.PUBLIC_CPUS) / 2 : 2;
+  let max_threads: number;
+  let n_threads: number;
+
+  const unsubscribe1 = cpus.subscribe((value) => {
+    max_threads = value
+    n_threads = value / 2
+  });
+
   let context_window = 2048;
   let gpu_layers = 0;
 
@@ -59,7 +72,10 @@
     bar_visible = !bar_visible;
     barVisible.set(bar_visible);
   }
-  onDestroy(unsubscribe);
+  onDestroy(() => {
+    unsubscribe;
+    unsubscribe1;
+  });
 </script>
 
 {#if !bar_visible}

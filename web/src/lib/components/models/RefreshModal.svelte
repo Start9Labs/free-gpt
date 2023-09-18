@@ -1,12 +1,14 @@
 <script lang="ts">
   import { invalidate } from "$app/navigation";
-  import { env } from "$env/dynamic/public";
+  import { modelsUrl } from "$lib/stores.js";
+  import { onDestroy } from "svelte";
 
   let dialogTag: HTMLDialogElement;
   let isLoading = false;
 
-  let link = env.PUBLIC_MODELS_URL ||
-    "https://raw.githubusercontent.com/serge-chat/serge/main/api/src/serge/data/models.json";
+  let link: string
+
+  const unsubscribe = modelsUrl.subscribe((value) => (link = value));
 
   const handleRefresh = async (e: Event) => {
     isLoading = true;
@@ -23,6 +25,8 @@
     }
     isLoading = false;
   };
+
+  onDestroy(unsubscribe);
 </script>
 
 <button class="btn-outline btn" on:click={() => dialogTag.showModal()}
