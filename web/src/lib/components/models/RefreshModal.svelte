@@ -1,10 +1,11 @@
 <script lang="ts">
-  import { invalidate, invalidateAll } from "$app/navigation";
+  import { invalidate } from "$app/navigation";
+  import { env } from "$env/dynamic/public";
 
   let dialogTag: HTMLDialogElement;
   let isLoading = false;
 
-  let link =
+  let link = env.PUBLIC_MODELS_URL ||
     "https://raw.githubusercontent.com/serge-chat/serge/main/api/src/serge/data/models.json";
 
   const handleRefresh = async (e: Event) => {

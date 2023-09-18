@@ -10,6 +10,8 @@ services:
       - datadb:/data/db
       - weights:/usr/src/app/weights/
       - /etc/localtime:/etc/localtime:ro
+    environment:
+      PUBLIC_MODELS_URL: https://raw.githubusercontent.com/Start9Labs/freegpt-startos/weights/models-big.json
     ports:
       - "8008:8008"
       - "9124:9124"
