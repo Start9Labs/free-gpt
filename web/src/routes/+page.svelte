@@ -199,7 +199,6 @@
             max="100"
             step="1"
             class="range range-sm mt-auto"
-            disabled
           />
         </div>
         <div
@@ -238,7 +237,6 @@
             bind:value={n_threads}
             min="0"
             max="64"
-            disabled
           />
         </div>
         <div
