@@ -4,13 +4,11 @@
   import { barVisible } from "$lib/stores";
   import { onDestroy, onMount } from "svelte";
   import { env } from "$env/dynamic/public";
-  import { PUBLIC_MODELS_URL } from "$env/static/public";
   export let data: PageData;
 
   onMount(() => {
-    console.error('** Process **', process.env)
     console.error('** Dynamic **', env)
-    console.error('** Static models **', PUBLIC_MODELS_URL)
+    console.error('** Raw env **', import.meta.env)
   });
 
   const models = data.models.filter((el) => el.available);
