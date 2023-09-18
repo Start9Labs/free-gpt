@@ -9,6 +9,6 @@ env_router = APIRouter(
 @env_router.get("/")
 def getEnv():
     return {
-      modelsUrl: os.environ["MODELS_URL"],
-      cpus: os.environ["CPUS"]
+      "modelsUrl": os.environ["MODELS_URL"],
+      "cpus": os.environ["CPUS"]
     }
