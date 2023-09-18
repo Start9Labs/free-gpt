@@ -1,3 +1,5 @@
+import os
+
 from fastapi import APIRouter
 
 env_router = APIRouter(
