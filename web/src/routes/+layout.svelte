@@ -4,7 +4,7 @@
   import { invalidate, goto } from "$app/navigation";
   import { onMount, onDestroy } from "svelte";
   import { page } from "$app/stores";
-  import { barVisible, newChat, themeStore } from "$lib/stores.js";
+  import { barVisible, newChat, themeStore, cpus, modelsUrl } from "$lib/stores.js";
   import { fly } from "svelte/transition";
   export let data: LayoutData;
 
@@ -17,11 +17,24 @@
   const unsubscribe = barVisible.subscribe((value) => (bar_visible = value));
   const unsubscribe1 = newChat.subscribe((value) => (dataCht = value));
 
-  onMount(() => {
+  onMount(async () => {
     bar_visible = window.innerWidth > 768;
     barVisible.set(bar_visible);
     theme = localStorage.getItem("data-theme") || "dark";
     document.documentElement.setAttribute("data-theme", theme);
+
+    // load models
+    const r = await fetch("/api/env/", {
+      method: "GET",
+    });
+
+    if (r.ok) {
+      const data = await r.json();
+      cpus.set(Number(data.cpus));
+      modelsUrl.set(data.modelsUrl);
+    }
+   
+    await invalidate("/api/env/");
   });
 
   $: id = $page.params.id || "";

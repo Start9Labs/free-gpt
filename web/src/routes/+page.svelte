@@ -1,23 +1,9 @@
 <script lang="ts">
   import type { PageData } from "./$types";
   import { goto, invalidate } from "$app/navigation";
-  import { barVisible, cpus, modelsUrl } from "$lib/stores";
-  import { onDestroy, onMount } from "svelte";
+  import { barVisible, cpus } from "$lib/stores";
+  import { onDestroy } from "svelte";
   export let data: PageData;
-
-  onMount(async () => {
-    const r = await fetch("/api/env/", {
-      method: "GET",
-    });
-
-    if (r.ok) {
-      const data = await r.json();
-      cpus.set(Number(data.cpus));
-      modelsUrl.set(data.modelsUrl);
-    }
-   
-    await invalidate("/api/env/");
-  });
 
   const models = data.models.filter((el) => el.available);
 
