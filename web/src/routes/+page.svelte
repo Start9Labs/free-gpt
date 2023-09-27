@@ -20,7 +20,7 @@
   let repeat_last_n = 64;
   let repeat_penalty = 1.3;
 
-  let init_prompt = "You are a helpful and honest assistant.";
+  let init_prompt = "";
 
   let max_threads: number;
   let n_threads: number;
